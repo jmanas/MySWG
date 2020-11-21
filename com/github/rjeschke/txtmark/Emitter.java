@@ -314,7 +314,8 @@ class Emitter {
                     out.append('"');
                 }
                 out.append('>');
-                this.recursiveEmitLine(out, name, 0, MarkToken.NONE);
+                // jmanas 19.11.2020
+                this.recursiveEmitLine(out, name.isEmpty() ? link : name, 0, MarkToken.NONE);
                 this.config.decorator.closeLink(out);
             }
         } else {
