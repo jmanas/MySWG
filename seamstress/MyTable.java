@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyTable {
+    private enum ALIGN {left, center, right}
+
     private final Row[] rows;
+    private final List<ALIGN> alignList = new ArrayList<>();
 
     public static String process(String input) {
         int idx1 = input.indexOf("<p>|");
@@ -20,7 +23,7 @@ public class MyTable {
                 prefix, table.replace(), postfix);
     }
 
-    public MyTable(String input) {
+    private MyTable(String input) {
         String[] lines = input.split("\\R");
         rows = new Row[lines.length];
         for (int col = 0; col < lines.length; col++)
@@ -32,6 +35,8 @@ public class MyTable {
         StringBuilder builder = new StringBuilder();
         builder.append("<table>");
         boolean withHeaders = rows.length > 1 && rows[1].isSep();
+        if (withHeaders)
+            loadAlignment(rows[1]);
         for (int r = 0; r < rows.length; r++) {
             Row row = rows[r];
             builder.append("<tr>");
@@ -45,11 +50,32 @@ public class MyTable {
         return builder.toString();
     }
 
+    private void loadAlignment(Row row) {
+        for (String col : row.columns) {
+            boolean left = col.contains(":---");
+            boolean right = col.contains("---:");
+            if (left && right)
+                alignList.add(ALIGN.center);
+            else if (right)
+                alignList.add(ALIGN.right);
+            else if (left)
+                alignList.add(ALIGN.left);
+            else
+                alignList.add(ALIGN.left);
+        }
+    }
+
     private void emitColumn(StringBuilder builder, Row row, String tag) {
-        for (String col : row.columns)
-            builder.append("<").append(tag).append(">")
+        ALIGN def = alignList.isEmpty() ? ALIGN.left : alignList.get(alignList.size() - 1);
+        List<String> columns = row.columns;
+        for (int c = 0; c < columns.size(); c++) {
+            String col = columns.get(c);
+            ALIGN align = c < alignList.size() ? alignList.get(c) : def;
+            String alignAttr= String.format(" align=\"%s\"", align.name());
+            builder.append("<").append(tag).append(alignAttr).append(">")
                     .append(col)
                     .append("</").append(tag).append(">");
+        }
     }
 
     private static class Row {
