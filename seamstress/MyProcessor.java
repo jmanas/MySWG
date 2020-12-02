@@ -18,13 +18,13 @@ public class MyProcessor {
     private final File site;
     private final Config rootConfig;
 
-    public MyProcessor(File root)
+    public MyProcessor(File configFile)
             throws Exception {
-        this.root = root;
-        rootConfig = new Config(root);
-        String named_site = rootConfig.get("site");
-        if (named_site != null && named_site.length() > 0)
-            this.site = new File(root, named_site);
+        rootConfig = new Config(configFile);
+        root = rootConfig.getRoot();
+        String dst_site = rootConfig.get("site");
+        if (dst_site != null && dst_site.length() > 0)
+            this.site = new File(root, dst_site);
         else
             this.site = new File(root, "_site");
     }

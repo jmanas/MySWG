@@ -9,21 +9,22 @@ import java.util.Properties;
  * Created by jose on 07-Jan-16.
  */
 public class Config {
-    private final File root;
+    private File root;
     private final Properties properties;
 
-    Config(File root)
+    Config( File configFile)
             throws Exception {
-        this.root = root;
+        root = configFile.getParentFile();
+
         properties = new Properties();
-        properties.setProperty("root", root.getCanonicalPath());
-        File yml = new File(root, "_config.txt");
-        try (BufferedReader reader = util.IO.getReader(yml)
+        try (BufferedReader reader = util.IO.getReader(configFile)
         ) {
             for (; ; ) {
                 String line = reader.readLine();
                 if (line == null)
                     break;
+                if (line.startsWith("//"))
+                    continue;
                 try {
                     int dotdot = line.indexOf(':');
                     String key = line.substring(0, dotdot).trim();
@@ -33,10 +34,13 @@ public class Config {
                 }
             }
         }
+
+        if (properties.contains("root"))
+            root = new File(properties.getProperty("root"));
+        properties.setProperty("root", root.getCanonicalPath());
     }
 
-    public Config(Config context)
-            throws IOException {
+    public Config(Config context) {
         this.root = context.root;
         properties = new Properties(context.properties);
     }

@@ -4,13 +4,9 @@ import java.io.File;
 
 public class Build {
     public static void main(String[] args) {
-        String root;
-        if (args.length > 0)
-            root = args[0];
-        else
-            root = ".";
+        String root = args[0];
         try {
-            MyProcessor myProcessor = new MyProcessor(new File(root));
+            MyProcessor myProcessor = new MyProcessor(new File(root).getAbsoluteFile());
             myProcessor.go();
         } catch (Exception e) {
             System.err.println(e);
