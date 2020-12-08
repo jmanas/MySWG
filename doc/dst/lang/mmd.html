@@ -1,0 +1,94 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>MySWG/Macros</title>
+
+<link rel="stylesheet" type="text/css" href="../style.css">
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+</script>
+<![endif]-->
+</head>
+
+<body>
+
+<nav style="width: 200px;">
+  <ul>
+  <li><img src="../imgs/weight-32.png"/></li>
+  <li><a href="../index.html">MySWG</a></li>
+  <li><a href="../lang/md.html">MD files</a></li>
+  <li><a href="../lang/mmd.html">MMD files</a></li>
+  <li><a href="../lang/tables.html">Tables</a></li>
+  </ul>
+</nav>
+
+<p>&nbsp;
+
+<div style="margin-left:200px;padding:1px 16px;height:100%;">
+
+<h1>MySWG/Macros</h1>
+<p>MySWG process file replacing macros.</p>
+<ul>
+<li>replace a variable for its value</li>
+<li>copy a line</li>
+<li>include (inline) another file</li>
+<li>you may comment lines out</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>replace a &lt;&lt;variable&gt;&gt; for its value</li>
+<li>&lt;&lt;&lt; copy this line</li>
+<li>&lt;&lt; file to include</li>
+<li>// this is a comment (that is, skipped)</li>
+</ul>
+<h2>Variables</h2>
+<p>Variables are defined either at the configuration file or in any MD file.</p>
+<p>As in</p>
+<pre><code>file.md
+  variable-1: value 1
+  variable-2: value 2
+  -----
+</code></pre>
+<p>When a MD file includes another MD file,
+the macros of the include file extend (or even replace) variables for new values.</p>
+<p>A special variable is defined for every MD file:</p>
+<blockquote><p>&lt;&lt;ptr&gt;&gt;</p>
+</blockquote>
+<p>This variable is replaced by the "path to root"
+that is a relative path from this file to the web site root.</p>
+<p>Example</p>
+<blockquote><p>&lt;&lt; &lt;&lt;ptr&gt;&gt;/style.css</p>
+</blockquote>
+<p>Includes</p>
+<blockquote><p>../style.css</p>
+</blockquote>
+<h2>Replace</h2>
+<p>The syntax</p>
+<blockquote><p>&lt;&lt;name&gt;&gt;</p>
+</blockquote>
+<p>is replaced by the value of 'name'.</p>
+<p>The angle brackets cannot start a new line in order to avoid confussion with include command.</p>
+<h2>Include line</h2>
+<p>The syntax</p>
+<blockquote><p>&lt;&lt;&lt; line</p>
+</blockquote>
+<p>copies the line onto the html output.</p>
+<p>The characters '&lt;&lt;&lt;' must be at the begimming of the line (column 0).</p>
+<h2>Include file</h2>
+<p>The syntax</p>
+<blockquote><p>&lt;&lt; filename</p>
+</blockquote>
+<p>includes the mentioned filename.</p>
+<p>The characters '&lt;&lt;' must be at the begimming of the line (column 0).</p>
+<h2>Comments</h2>
+<p>Lines starting with '//' are skipped.</p>
+
+</div>
+
+<hr>
+&copy; 2020 José A. Mañas <jmanas@pilar-tools.com>
+
+</body>
+</html>
+

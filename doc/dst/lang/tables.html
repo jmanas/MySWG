@@ -1,0 +1,117 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>MySWG/tables</title>
+
+<link rel="stylesheet" type="text/css" href="../style.css">
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+</script>
+<![endif]-->
+</head>
+
+<body>
+
+<nav style="width: 200px;">
+  <ul>
+  <li><img src="../imgs/weight-32.png"/></li>
+  <li><a href="../index.html">MySWG</a></li>
+  <li><a href="../lang/md.html">MD files</a></li>
+  <li><a href="../lang/mmd.html">MMD files</a></li>
+  <li><a href="../lang/tables.html">Tables</a></li>
+  </ul>
+</nav>
+
+<p>&nbsp;
+
+<div style="margin-left:200px;padding:1px 16px;height:100%;">
+
+<h1>MySWG/tables</h1>
+<p>The markdown syntax is extended with the specification of tables.
+As described in <a href="https://www.markdownguide.org/extended-syntax/">https://www.markdownguide.org/extended-syntax/</a>.ZZ</p>
+<p>Like this</p>
+<div class="boxed">
+<p><table><tr><th align="left"> header 1 </th><th align="left"> header 2 </th></tr><tr></tr><tr><td align="left"> col 1, 1 </td><td align="left"> col 1, 2 </td></tr><tr><td align="left"> col 2, 1 </td><td align="left"> col 2, 2 </td></tr></table></p>
+</div>
+<p>specified as</p>
+<div class="boxed">
+<pre><code>| header 1 | header 2 |
+| -------- | -------- |
+| col 1, 1 | col 1, 2 |
+| col 2, 1 | col 2, 2 |
+</code></pre>
+</div>
+<h2>Tables with headers</h2>
+<p>A header is identified because the header row is followed by a like with '---'.</p>
+<p>Like this</p>
+<div class="boxed">
+<p><table><tr><td align="left"> header 1 </td><td align="left"> header 2 </td></tr><tr><td align="left"> col 1, 1 </td><td align="left"> col 1, 2 </td></tr><tr><td align="left"> col 2, 1 </td><td align="left"> col 2, 2 </td></tr></table></p>
+</div>
+<p>specified as</p>
+<div class="boxed">
+<pre><code>| header 1 | header 2 |
+| col 1, 1 | col 1, 2 |
+| col 2, 1 | col 2, 2 |
+</code></pre>
+</div>
+<h2>Column alignment</h2>
+<p>And you may establish text alignment in columns:</p>
+<ul>
+<li>align left: <code>:---</code></li>
+<li>align right: <code>---:</code></li>
+<li>center: <code>:---:</code></li>
+</ul>
+<div class="boxed">
+<p><table><tr><th align="left"> header 1 </th><th align="center"> header 2 </th><th align="right"> header 3 </th></tr><tr></tr><tr><td align="left"> col 1, 1 </td><td align="center"> col 1, 2 </td><td align="right"> col 1, 3 </td></tr><tr><td align="left"> col 2, 1 </td><td align="center"> col 2, 2 </td><td align="right"> col 2, 3 </td></tr></table></p>
+</div>
+<p>specified as</p>
+<div class="boxed">
+<pre><code>| header 1 | header 2 | header 3 |
+| :------- | :------: | -------: |
+| col 1, 1 | col 1, 2 | col 1, 3 |
+| col 2, 1 | col 2, 2 | col 2, 3 |
+</code></pre>
+</div>
+<h2>Table style</h2>
+<p>If you with to specify a style for a table,
+you can use CSS.
+For example:</p>
+<div class="boxed">
+<pre><code>.mytable table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.mytable th, .mytable td {
+  border: 1px solid black;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+</code></pre>
+</div>
+<p>Then use it inside a <code>div</code> block:</p>
+<div class="boxed">
+<div class="mytable">
+<p><table><tr><th align="left"> header 1 </th><th align="center"> header 2 </th><th align="right"> header 3 </th></tr><tr></tr><tr><td align="left"> col 1, 1 </td><td align="center"> col 1, 2 </td><td align="right"> col 1, 3 </td></tr><tr><td align="left"> col 2, 1 </td><td align="center"> col 2, 2 </td><td align="right"> col 2, 3 </td></tr></table></p>
+</div>
+</div>
+<p>specified as</p>
+<div class="boxed">
+<pre><code>&lt;&lt;&lt; &lt;div class="mytable"&gt;
+| header 1 | header 2 | header 3 |
+| :------- | :------: | -------: |
+| col 1, 1 | col 1, 2 | col 1, 3 |
+| col 2, 1 | col 2, 2 | col 2, 3 |
+&lt;&lt;&lt; &lt;/div&gt;
+</code></pre>
+</div>
+
+</div>
+
+<hr>
+&copy; 2020 José A. Mañas <jmanas@pilar-tools.com>
+
+</body>
+</html>
+

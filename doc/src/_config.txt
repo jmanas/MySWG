@@ -1,0 +1,12 @@
+charset: áéíóú
+
+// sample config file
+
+lang: es
+
+name: MySWG
+
+site: ../dst
+
+force: true
+

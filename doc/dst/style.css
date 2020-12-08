@@ -1,0 +1,101 @@
+
+BODY, H1, H2, H3, H4, H5, H6, P, DIV, BLOCKQUOTE,
+DT, DD, TABLE, TH, TD {
+  font-family: "Comic Sans MS", Sans-Serif;
+  font-size: 12pt;
+  color: rgb(50, 100, 150);
+}
+
+BODY {
+  /* background-image: url(back.png); */
+  /* background-color: rgb(235, 235, 235); */
+}
+
+H1 {
+  font-size: 150%;
+  font-weight: bold;
+}
+
+H2 {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+H3 {
+  font-size: 120%;
+  font-style: italic;
+}
+
+OL, UL {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+A:link { color: blue }
+A:visited { color: gray }
+A:active { color: red }
+
+DT {
+  font-weight: bold;
+}
+
+P.mapa {
+  font-weight: bold;
+  font-size: 11pt;
+  margin: 0 0 0 0;
+}
+
+INPUT, TEXTAREA {
+  font-family: serif;
+  font-size: 12pt;
+}
+
+.boxed {
+  border: 1px solid green ;
+}
+
+#menu {
+  margin: 0px;
+  width: 900px;
+  }
+
+#menu li {
+  display: block;
+  width: 120px;
+  float: left;
+  margin-left: 5px;
+  }
+
+nav {
+  background-color: #d0ffd0;
+  position: fixed;
+  height: 100%;
+  overflow: scroll;
+}
+
+nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav > ul > li {
+  padding: 8px 0 8px 16px;
+}
+
+nav li > a {
+  text-decoration: none;
+}
+
+
+.mytable table {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.mytable th, .mytable td {
+  border: 1px solid black;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+

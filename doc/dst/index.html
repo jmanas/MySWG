@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>MySWG</title>
+
+<link rel="stylesheet" type="text/css" href="./style.css">
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js">
+</script>
+<![endif]-->
+</head>
+
+<body>
+
+<nav style="width: 200px;">
+  <ul>
+  <li><img src="./imgs/weight-32.png"/></li>
+  <li><a href="./index.html">MySWG</a></li>
+  <li><a href="./lang/md.html">MD files</a></li>
+  <li><a href="./lang/mmd.html">MMD files</a></li>
+  <li><a href="./lang/tables.html">Tables</a></li>
+  </ul>
+</nav>
+
+<p>&nbsp;
+
+<div style="margin-left:200px;padding:1px 16px;height:100%;">
+
+<h1>MySWG - Static Website Generation</h1>
+<p>or</p>
+<blockquote><p><strong>MySWG</strong> - Simple Website Generator</p>
+</blockquote>
+<p>MySWG is a processor that transform a source tree into a website.</p>
+<p>While replicating source directory structure,
+files are copied from source tree into destination tree
+with the following changes</p>
+<ul>
+<li>file.md -> file.html (using markdown syntax)</li>
+<li>file.mmd -> file.html (using macro syntax)</li>
+<li>_file -> are ignored (not copied)</li>
+<li>file -> file (any other file is copied as is)</li>
+</ul>
+<p>Example: this site</p>
+<pre><code>  src                       dst
+    src/_config.txt
+    src/_footer.mmd
+    src/_header.mmd
+    src/imgs                  dst/imgs
+      src/imgs/weight-32.png    dst/imgs/weight-32.png
+    src/index.md              dst/index.html
+    src/lang                  dst/lang
+      src/lang/md.md            dst/lang/md.html
+      src/lang/mmd.md           dst/lang/mmd.html
+      src/lang/tables.md        dst/lang/tables.md
+</code></pre>
+<h2>Files</h2>
+<p>MD files are written using
+<a href="lang/md.html">markdown syntax</a> .</p>
+<p>See</p>
+<ul>
+<li><a href="lang/md.html">markdown</a></li>
+<li><a href="lang/mmd.html">macros</a></li>
+<li><a href="lang/tables.html">tables</a></li>
+</ul>
+<h2>File variables</h2>
+<p>Each MD file includes a heading part,
+that defines a number of variables.
+the heading part expands from the beginning of the file to a line with 5 or more dashes.</p>
+<p>the format of definitions is</p>
+<blockquote><p>variable : value</p>
+</blockquote>
+<p>Files may include a mark for MySWG to guess the encoding of the file</p>
+<blockquote><p>charset : áéíóú</p>
+</blockquote>
+<p>Generated html is always UTF-8.</p>
+<h2>Site configuration</h2>
+<p>Site generation is controled by a configuration file in source directory.</p>
+<p>This file defines variables for general use, or for MMD files.
+Definitions are project-wide, and may be refined in MD files.</p>
+<p>Some definitions are used configure MySWG:</p>
+<p><strong>root</strong></p>
+<blockquote><p>Specifies the directory of the source tree.
+If none is specified,
+MySWG uses the directory where configuration file sits.</p>
+</blockquote>
+<p><strong>site</strong></p>
+<blockquote><p>Specifies the directory of the html destination tree.
+If none is specified,
+MySWG uses <code>root/_site</code></p>
+</blockquote>
+<p><strong>force</strong></p>
+<blockquote><p>It is a boolean value that controls what to do
+if the generated file already exists in the destination tree.</p>
+<p>If <code>false</code>, the destination directory is generated.</p>
+<p>If <code>true</code>, files are generated, or copied, <strong>only</strong> if changed or newer.</p>
+</blockquote>
+<h2>Build your site</h2>
+<p>Let your source files be located at DIR,
+with a configuration file at <code>DIR/_config.txt</code>.
+The following command will build your web site:</p>
+<pre><code>&gt; cd DIR
+&gt; Build _config.txt
+</code></pre>
+<h2>Character encoding</h2>
+<p>MySWG will discover source file encoding using the following methods</p>
+<ol>
+<li>If the file contains the sequence 'áéíóú', its encoding is used.</li>
+<li>If the file has a BOM, use it.</li>
+<li>Otherwise, use system default character set.</li>
+</ol>
+<p>A practical way to ensure the correct encoding is used
+is to use the first method including a comment like this in every file</p>
+<p>// áéíóú</p>
+
+</div>
+
+<hr>
+&copy; 2020 José A. Mañas <jmanas@pilar-tools.com>
+
+</body>
+</html>
+
